@@ -1,0 +1,40 @@
+<project name="hessian" default="unspecified">
+  <property environment="env"/>
+  <property name="project.location" location="."/>
+  <property name="lib.dir" value="/usr/share/java"/>
+  <property name="src.dir" value="."/>
+  <property name="classes.dir" value="classes"/>
+  <property name="doc.dir" value="doc"/>
+  <property name="javadoc.dir" value="${doc.dir}/api"/>
+
+  <path id="project.classpath">
+    <pathelement location="${classes.dir}"/>
+    <pathelement location="${lib.dir}/tomcat-servlet-3.0-api.jar"/>
+  </path>
+
+  <target name="compile">
+    <mkdir dir="${classes.dir}" />
+    <javac
+        srcdir="${src.dir}"
+        destdir="${classes.dir}"
+        debug="false"
+        classpathref="project.classpath"
+        source="1.6" target="1.6">
+      <include name="com/**/*.java" />
+    </javac>
+  </target>
+
+  <target name="jar" depends="compile">
+    <jar jarfile="hessian.jar">
+      <fileset
+          dir="${classes.dir}"
+          includes="com/**/*.class"/>
+    </jar>
+  </target>
+
+  <target name="javadoc" description="Generated Java API documentation">
+    <delete dir="${javadoc.dir}" quiet="true"></delete>
+    <javadoc destdir="${javadoc.dir}" classpathref="project.classpath"
+             windowtitle="Hessian API" sourcepath="${src.dir}" linksource="no" encoding="ISO8859-1"/>
+  </target>
+</project>
