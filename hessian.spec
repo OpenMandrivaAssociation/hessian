@@ -2,11 +2,11 @@
 Summary:        Java implementation of a binary protocol for web services 
 Name:           hessian
 Version:        4.0.7
-Release:        6.0%{?dist}
+Release:        8.1
 Epoch:          0
 License:        ASL 1.1
 URL:            http://hessian.caucho.com/
-
+Group:		Development/Java
 Source0:        http://caucho.com/download/hessian-4.0.7-src.jar
 Source1:        %{name}-build.xml
 Source2:        http://repo1.maven.org/maven2/com/caucho/hessian/4.0.7/hessian-4.0.7.pom
@@ -27,8 +27,7 @@ protocol for web services.
 
 %package javadoc
 Summary:        API documentation for %{name}
-
-Requires:       jpackage-utils
+Group:		Documentation
 
 %description javadoc
 API documentation for %{name}.
@@ -50,16 +49,13 @@ cp -p %{name}.jar $RPM_BUILD_ROOT%{_javadir}/%{name}.jar
 install -d -m 755 $RPM_BUILD_ROOT%{_mavenpomdir}
 install -pm 644 %{SOURCE2} $RPM_BUILD_ROOT%{_mavenpomdir}/JPP-%{name}.pom
 
-%add_maven_depmap JPP-%{name}.pom %{name}.jar 
+%add_maven_depmap
 
 # javadoc
 mkdir -p $RPM_BUILD_ROOT%{_javadocdir}
 cp -rp doc/api $RPM_BUILD_ROOT%{_javadocdir}/%{name}
 
-%files
-%{_mavenpomdir}/*
-%{_mavendepmapfragdir}/*
-%{_javadir}/*.jar
+%files -f .mfiles
 %doc apache.license
 
 %files javadoc
