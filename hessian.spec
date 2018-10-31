@@ -2,7 +2,7 @@
 Summary:        Java implementation of a binary protocol for web services 
 Name:           hessian
 Version:        4.0.7
-Release:        8.2
+Release:        8.3
 Epoch:          0
 License:        ASL 1.1
 URL:            http://hessian.caucho.com/
