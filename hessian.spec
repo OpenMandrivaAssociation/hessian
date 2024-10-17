@@ -5,7 +5,7 @@ Version:        4.0.7
 Release:        8.3
 Epoch:          0
 License:        ASL 1.1
-URL:            http://hessian.caucho.com/
+URL:            https://hessian.caucho.com/
 Group:		Development/Java
 Source0:        http://caucho.com/download/hessian-4.0.7-src.jar
 Source1:        %{name}-build.xml
